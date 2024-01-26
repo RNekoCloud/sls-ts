@@ -1,0 +1,16 @@
+service: sls-ts
+frameworkVersion: '3'
+
+plugins: 
+  - serverless-offline
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  api:
+    handler: index.handler
+    events:
+      - httpApi: '*'
