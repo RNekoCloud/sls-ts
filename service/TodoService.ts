@@ -1,6 +1,12 @@
-import { ScanCommand } from "@aws-sdk/client-dynamodb";
+import { ScanCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { Request } from "express";
 import { Dyno } from "../config/dyno";
+
+interface Todo {
+    todo_id: string,
+    title: string,
+    status: string,
+}
 
 class TodoService {
     body: Request["body"];
@@ -13,7 +19,7 @@ class TodoService {
         this.dyno = dyno;
     };
 
-    getAll = async() => {
+    getAll = async() =>  {
         const table = this.dyno.tableName;
         const client = this.dyno.client;
 
@@ -21,9 +27,10 @@ class TodoService {
             TableName: table
         });
 
-        const response = await client.send(cmd)
-        return response.Items
+        const response = await client.send(cmd);
+        return response.Items;
     };
+
 };
 
 export default TodoService;
