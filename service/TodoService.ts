@@ -19,7 +19,7 @@ class TodoService {
         this.dyno = dyno;
     };
 
-    getAll = async() =>  {
+    async findAll() {
         const table = this.dyno.tableName;
         const client = this.dyno.client;
 
