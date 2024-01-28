@@ -1,4 +1,4 @@
-import { ScanCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
+import { ScanCommand } from "@aws-sdk/client-dynamodb";
 import { Request } from "express";
 import { Dyno } from "../config/dyno";
 
@@ -19,7 +19,7 @@ class TodoService {
         this.dyno = dyno;
     };
 
-    async findAll() {
+    async findAll(): Promise<any> {
         const table = this.dyno.tableName;
         const client = this.dyno.client;
 
