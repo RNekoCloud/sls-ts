@@ -18,3 +18,5 @@ class TodoController {
         }).status(200)
     }
 }
+
+export default TodoController;
