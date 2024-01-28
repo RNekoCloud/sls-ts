@@ -7,7 +7,7 @@ export interface Dyno {
 
 export const Local: Dyno = {
     client: new DynamoDBClient({
-        endpoint: "http://localhost:3000"
+        endpoint: "http://localhost:8000"
     }),
     tableName: "todo"
 }
