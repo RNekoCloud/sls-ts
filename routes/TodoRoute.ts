@@ -4,7 +4,7 @@ import TodoController from "../controller/TodoController"
 class TodoRoutes {
     controller: TodoController;
 
-    constructor(controller) {
+    constructor(controller: TodoController) {
         this.controller = controller;
     }
 
