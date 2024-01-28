@@ -1,5 +1,4 @@
 import { ScanCommand } from "@aws-sdk/client-dynamodb";
-import { Request } from "express";
 import { Dyno } from "../config/dyno";
 
 interface Todo {
@@ -9,13 +8,9 @@ interface Todo {
 }
 
 class TodoService {
-    body: Request["body"];
-    params: Request["params"]
     dyno: Dyno
 
-    constructor(req: Request, dyno: Dyno) {
-        this.body = req.body;
-        this.params = req.params;
+    constructor(dyno: Dyno) {
         this.dyno = dyno;
     };
 
