@@ -10,6 +10,7 @@ class TodoRoutes {
 
     setup(router: Express) {
         router.get("/api/v1/todo", this.controller.getAll);
+        router.post("/api/v1/todo",  this.controller.save);
     }
 };
 
