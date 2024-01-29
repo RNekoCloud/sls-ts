@@ -1,14 +1,8 @@
 import { ScanCommand } from "@aws-sdk/client-dynamodb";
 import { Dyno } from "../config/dyno";
 
-interface Todo {
-    todo_id: string,
-    title: string,
-    status: string,
-}
-
 class TodoService {
-    dyno: Dyno
+    dyno: Dyno;
 
     constructor(dyno: Dyno) {
         this.dyno = dyno;
