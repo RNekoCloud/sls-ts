@@ -1,5 +1,5 @@
 import { Express } from "express";
-import TodoController from "../controller/TodoController"
+import TodoController from "../controller/TodoController";
 
 class TodoRoutes {
     controller: TodoController;
