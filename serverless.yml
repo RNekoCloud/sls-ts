@@ -4,7 +4,6 @@ frameworkVersion: '3'
 plugins: 
   - serverless-offline
   - serverless-plugin-typescript
-  - serverless-plugin-typescript-express
 
 provider:
   name: aws
