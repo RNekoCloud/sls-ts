@@ -12,7 +12,7 @@ const todoController = new TodoController();
 const todoRoutes = new TodoRoutes(todoController);
 
 // Setup parser
-app.use(bodyParser.json)
+app.use(bodyParser.json())
 
 todoRoutes.setup(app);
 
