@@ -1,16 +1,11 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import TodoService from "../service/TodoService";
+import { Local } from "../config/dyno";
 
-class TodoController {
-    service: TodoService;
-
-    constructor(service: TodoService) {
-        this.service = service;
-    }
-
-    async getAll(req: Request, res: Response) {
-        const todoService = this.service;
-        const result = await todoService.findAll()
+class TodoController  {
+    public async getAll(req: Request, res: Response, next: NextFunction ): Promise<Response> {
+        let service: TodoService = new TodoService(Local)
+        const result = await service.findAll();
 
         return res.json({
             code: 200,
