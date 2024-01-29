@@ -9,7 +9,7 @@
     "AttributeDefinitions": [
         {
             "AttributeName": "id",
-            "AttributeType": "HASH"
+            "AttributeType": "S"
         }
     ],
     "ProvisionedThroughput": {
