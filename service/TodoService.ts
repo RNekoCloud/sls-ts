@@ -20,9 +20,12 @@ class TodoService {
         });
         const response = await client.send(cmd);
 
-        // Convert result of execution query into interface
+        // Declare empty array
         let result: Todo[] = []
+         // Convert result of execution query into interface
         const rawData = response.Items as unknown as RawTodo[];
+
+        // First, we need to loop over the raw data
         rawData.forEach(el => {
             // Get field object in Raw Data Query DynamoDB
             const { id, title, status } = el
