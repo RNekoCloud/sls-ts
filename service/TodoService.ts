@@ -1,7 +1,6 @@
 import { ScanCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { Dyno } from "../config/dyno";
-import { Todo } from "./Todo";
-import { nanoid } from "nanoid";
+import { RawTodo, Todo } from "./Todo";
 
 class TodoService {
     dyno: Dyno;
@@ -10,17 +9,36 @@ class TodoService {
         this.dyno = dyno;
     };
 
-    async findAll(): Promise<any> {
+    async findAll(): Promise<Todo[]> {
+        // Setup DynamoDB Config
         const table = this.dyno.tableName;
         const client = this.dyno.client;
 
+        // Executing Scan Query
         const cmd = new ScanCommand({
             TableName: table
         });
-
         const response = await client.send(cmd);
-        
-       return response.Items;
+
+        // Convert result of execution query into interface
+        let result: Todo[] = []
+        const rawData = response as unknown as RawTodo[];
+        rawData.forEach(el => {
+            // Get field object in Raw Data Query DynamoDB
+            const { id, title, status } = el
+            // Push the raw data into new array
+            let todo: Todo = {
+                id: id.S,
+                title: title.S,
+                status: status.S,
+            };
+
+            result.push(todo)
+            
+        })
+
+        // Return response
+        return result;
     };
 
     async create(data: Todo) {
@@ -31,7 +49,7 @@ class TodoService {
             TableName: table,
             Item: {
                 "id": {
-                    S: nanoid(),
+                    S: data.id,
                 },
                 "title": {
                     S: data.title,
