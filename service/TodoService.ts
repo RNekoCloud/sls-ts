@@ -22,7 +22,7 @@ class TodoService {
 
         // Convert result of execution query into interface
         let result: Todo[] = []
-        const rawData = response as unknown as RawTodo[];
+        const rawData = response.Items as unknown as RawTodo[];
         rawData.forEach(el => {
             // Get field object in Raw Data Query DynamoDB
             const { id, title, status } = el
