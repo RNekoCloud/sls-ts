@@ -9,5 +9,5 @@ export const Local: Dyno = {
     client: new DynamoDBClient({
         endpoint: "http://localhost:8000"
     }),
-    tableName: "todo_v2"
+    tableName: "todo_v2.1"
 }
